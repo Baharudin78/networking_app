@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:networking_app/network/delete_app.dart';
+import 'package:networking_app/network/future_builder_app.dart';
 import 'package:networking_app/network/get_app.dart';
 import 'package:networking_app/network/post_app.dart';
 
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DeleteApp(),
+      home: FutureBuilderApp(),
     );
   }
 }
