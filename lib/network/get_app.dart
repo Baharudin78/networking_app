@@ -50,9 +50,8 @@ class _GetAppState extends State<GetApp> {
                   Uri.parse("https://reqres.in/api/users/2"),
                 );
                 if (response.statusCode == 200) {
-                  print("Berhasil");
                   var data = jsonDecode(response.body) as Map<String, dynamic>;
-
+                  print(data);
                   setState(() {
                     body = data["data"].toString();
                     nama = "${data["first_name"]} ${data["last_name"]}";
