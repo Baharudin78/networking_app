@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:networking_app/models/user.dart';
 
 class FutureBuilderApp extends StatefulWidget {
   const FutureBuilderApp({Key? key}) : super(key: key);
@@ -11,13 +12,13 @@ class FutureBuilderApp extends StatefulWidget {
 }
 
 class _FutureBuilderAppState extends State<FutureBuilderApp> {
-  List<Map<String, dynamic>> allUser = [];
+  List<UserModel> allUser = [];
   Future getAllUser() async {
     try {
       var response = await http.get(Uri.parse("https://reqres.in/api/users"));
       List data = (json.decode(response.body) as Map<String, dynamic>)["data"];
       data.forEach((element) {
-        allUser.add(element);
+        allUser.add(UserModel.fromJson(element));
       });
       print(allUser);
     } catch (e) {
@@ -42,11 +43,11 @@ class _FutureBuilderAppState extends State<FutureBuilderApp> {
               itemCount: allUser.length,
               itemBuilder: (context, index) => ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage(allUser[index]['avatar']),
+                  backgroundImage: NetworkImage(allUser[index].avatar),
                 ),
                 title: Text(
-                    "${allUser[index]['first_name']} ${allUser[index]['last_name']}"),
-                subtitle: Text("${allUser[index]['email']}"),
+                    "${allUser[index].firstName} ${allUser[index].lastName}"),
+                subtitle: Text("${allUser[index].email}"),
               ),
             );
           }
